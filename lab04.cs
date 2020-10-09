@@ -60,18 +60,65 @@ namespace lab04
     {
         public void DictSentence(List <string> Words) 
         {
+            List<string> xxx = new List<string>();
+            List<string> yyy = new List<string>();
+            
+
             int WordIt = 0;
             foreach (string i in Words)
                 WordIt++;
 
-
-
+            int Kol;
             for (int i = 0; i < WordIt; i++)
             {
-                if 
+                string[] MassiveWords = Words[i].ToLower().Trim().Split(' ', ',');
+                Kol = 0;
+                foreach (string n in MassiveWords)
+                    Kol++;
+
+                if (Kol > 1)
+                {
+                    for (int t = 0; t < Kol - 1; t++)
+                    {
+                        xxx.Add(MassiveWords[t]);
+                        yyy.Add(MassiveWords[t + 1]);
+                    }
+                }
+            }
+            int KolXandY = 0;
+            foreach (string i in xxx)
+                KolXandY++;
+
+            List<string> NewXXX = new List<string>();
+            List<string> NewYYY = new List<string>();
+            int KolXXX = 0;
+            int KolYYY = 0;
+            foreach (string i in xxx)
+                KolXXX++;
+            foreach (string i in yyy)
+                KolYYY++;
+
+            for (int i = 0; i < KolXXX; i++)
+            {
+                if (xxx[i] != "")
+                    NewXXX.Add(xxx[i]);
+            }
+            for (int i = 0; i < KolYYY; i++)
+            {
+                if (yyy[i] != "")
+                    NewYYY.Add(yyy[i]);
             }
 
-            Dictionary<string, string> DictWords = new Dictionary<string, string>();           
+            Dictionary<string, string> DictWords = new Dictionary<string, string>();
+            for (int i = 0; i < KolXandY; i++)
+            {
+                DictWords.Add(NewXXX[i], NewYYY[i]);
+            }
+
+            foreach (KeyValuePair<string, string> keyValue in DictWords)
+            {
+                Console.WriteLine(keyValue.Key + " : " + keyValue.Value);
+            }
         }
         
 
